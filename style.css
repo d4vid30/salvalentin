@@ -1,0 +1,257 @@
+/* style.css - flor + lluvia de corazones + modal de mensaje */
+
+/* --- Estilos de la flor (tu CSS restaurado con morados) --- */
+body {
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+.flower {
+    height: 200px;
+    width: 200px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #000;
+    animation: pulsate 2s infinite;
+}
+
+.text-above,
+.text-below {
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    user-select: none;
+}
+
+.text-above {
+    top: -60px;
+}
+
+.text-below {
+    bottom: -60px;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1.5);
+    }
+
+    50% {
+        transform: scale(1.6);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+/* Centro */
+.mid {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff6ff 0%, #efd7ff 45%, #d4b9ff 100%);
+    z-index: 4;
+    background-size: 5px 5px;
+    filter: drop-shadow(0 0 8px rgba(150, 80, 220, 0.45));
+}
+
+/* Pétalos */
+.Petal1 {
+    position: absolute;
+    left: 40px;
+    z-index: 3;
+    width: 120px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f7efff 0%, #e6cfff 60%, #caa3ff 100%);
+    filter: drop-shadow(0 0 5px rgba(140, 70, 210, 0.32));
+}
+
+.Petal1.p1 {
+    transform: rotate(22.5deg);
+}
+
+.Petal1.p2 {
+    transform: rotate(67.5deg);
+}
+
+.Petal1.p3 {
+    transform: rotate(110.5deg);
+}
+
+.Petal1.p4 {
+    transform: rotate(157.5deg);
+}
+
+.Petal2 {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    width: 200px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f0e3ff 0%, #d9baff 55%, #b98bff 100%);
+    filter: drop-shadow(0 0 5px rgba(130, 60, 200, 0.28));
+}
+
+.Petal2.p1 {
+    transform: rotate(0deg);
+}
+
+.Petal2.p2 {
+    transform: rotate(90deg);
+}
+
+.Petal2.p3 {
+    transform: rotate(45deg);
+}
+
+.Petal2.p4 {
+    transform: rotate(135deg);
+}
+
+.Petal3 {
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    width: 200px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fbf4ff 0%, #ead2ff 60%, #d8b7ff 100%);
+    filter: drop-shadow(0 0 2px rgba(180, 120, 220, 0.20));
+}
+
+.Petal3.p1 {
+    transform: rotate(22.5deg);
+}
+
+.Petal3.p2 {
+    transform: rotate(67.5deg);
+}
+
+.Petal3.p3 {
+    transform: rotate(110.5deg);
+}
+
+.Petal3.p4 {
+    transform: rotate(157.5deg);
+}
+
+/* ---------- ESTILOS DE CORAZONES QUE LLUEVEN (no tocan la flor) ---------- */
+.rain-heart {
+    position: fixed;
+    top: -12vh;
+    pointer-events: none;
+    z-index: 999;
+    will-change: transform, opacity;
+    opacity: 0.95;
+    transform: translateY(0) rotate(0deg);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+    font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+}
+
+@keyframes rainFall {
+    0% {
+        transform: translateY(-12vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- MODAL MENSAJE OCULTO ---------- */
+.hidden-message {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms ease;
+    z-index: 1500;
+}
+
+.hidden-message.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hidden-content {
+    background: linear-gradient(180deg, #0f0f12, #15141a);
+    color: #fff;
+    width: min(88vw, 760px);
+    max-height: 80vh;
+    overflow: auto;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(120, 80, 200, 0.12);
+    transform: translateY(6px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.hidden-close {
+    position: absolute;
+    right: 1.25rem;
+    top: 1.1rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.hidden-close:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.hidden-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #ffd9ff;
+    text-shadow: 0 2px 8px rgba(120, 60, 200, 0.14);
+}
+
+.hidden-body p {
+    color: #e7def0;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+}
+
+/* ajustar para móviles */
+@media (max-width: 480px) {
+    .hidden-content {
+        padding: 16px;
+        width: 94vw;
+        max-height: 86vh;
+    }
+
+    .hidden-close {
+        font-size: 22px;
+        right: 1rem;
+        top: 0.9rem;
+    }
+}
