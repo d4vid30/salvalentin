@@ -1,6 +1,6 @@
-/* style.css - flor + lluvia de corazones + modal de mensaje */
+/* style.css - flor + lluvia de corazones + modal + cambio de tipografías */
 
-/* --- Estilos de la flor (tu CSS restaurado con morados) --- */
+/* --- Estilos base --- */
 body {
     background-color: #000;
     margin: 0;
@@ -12,6 +12,7 @@ body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
 }
 
+/* Contenedor flor */
 .flower {
     height: 200px;
     width: 200px;
@@ -24,23 +25,82 @@ body {
     animation: pulsate 2s infinite;
 }
 
+/* -------------------------
+   TIPOGRAFÍA PERSONALIZADA
+   .text-above -> cursiva elegante
+   .text-below -> sans moderna
+   ------------------------- */
+
+/* Nota: Great Vibes y Poppins están importadas en el HTML */
 .text-above,
 .text-below {
     position: absolute;
     text-align: center;
     color: #fff;
-    font-size: 25px;
     user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
 }
 
+/* Texto de arriba: cursiva, tamaño grande y con ligero brillo */
 .text-above {
     top: -60px;
+    font-family: "Great Vibes", cursive;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: 0.6px;
+    color: #ffd9ff;
+    text-shadow: 0 4px 14px rgba(160, 80, 220, 0.18);
+    transform-origin: center;
+    /* pequeño efecto de entrada */
+    animation: abovePop 600ms cubic-bezier(.2, .9, .2, 1) both;
 }
 
+/* Texto de abajo: limpio, elegante y fácil de leer */
 .text-below {
     bottom: -60px;
+    font-family: "Poppins", system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transform-origin: center;
+    /* efecto sutil para entrar después */
+    animation: belowFade 900ms ease both;
 }
 
+/* Animaciones pequeñas y no intrusivas */
+@keyframes abovePop {
+    0% {
+        transform: translateY(-6px) scale(.96);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateY(2px) scale(1.02);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes belowFade {
+    0% {
+        transform: translateY(6px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Resto de estilos de la flor (pétalos, centro) --- */
 @keyframes pulsate {
     0% {
         transform: scale(1.5);
@@ -241,8 +301,16 @@ body {
     margin-bottom: 0.9rem;
 }
 
-/* ajustar para móviles */
+/* responsive móvil */
 @media (max-width: 480px) {
+    .text-above {
+        font-size: 28px;
+    }
+
+    .text-below {
+        font-size: 16px;
+    }
+
     .hidden-content {
         padding: 16px;
         width: 94vw;
